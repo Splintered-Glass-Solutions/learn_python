@@ -1,4 +1,10 @@
 
+# == Imports ==
+# * lets skip these for now
+# import print_cat_facts as pcf
+# import traceback2 as traceback
+# import pandas as pd
+# import datetime as dt
 # ======== PYTHON 101 ==========
 # %% #_ region[grey]
 # ==== Comments ====
@@ -8,8 +14,6 @@ var1 = 2 + 2
 # ==== Cell Execiton (shift+enter) ====
 # %% #* the '#%%' is a special command in VS Code.
 #           It allows us to run code in chunks
-
-# ter
 
 # we can do this by hitting shift+enter
 print("Just testing things")
@@ -85,7 +89,6 @@ len('abcd')  # also works on strings, fyi
 
 # %%#= dates
 # * here we gave the datetime module a nickname 'dt' so we dont have to type it everytime we use it
-import datetime as dt
 # generally you import at the top of the file.. but oh well
 
 day = dt.datetime.now()  # * now this is called a dot function.
@@ -172,7 +175,6 @@ my_dictionary['another']
 # %% #_ region[green]ion
 # * from a csv
 # pandas is a vital package that allows you to work with data in row col format. Similar to excel...ish.
-import pandas as pd
 
 # be sure to paste in the correct file path to your csv
 data_df = pd.read_csv("")
@@ -228,14 +230,11 @@ data_df = pd.read_csv()
 # we already saw how to get data from a csv, now lets look at other sources
 # %%
 # _ region[blue]
-import pandas as pd
-import traceback2 as traceback
 
 # * also functions and errror handling
 
 # %% #* from an API
 
-import print_cat_facts as pcf
 
 # * also for loops
 
