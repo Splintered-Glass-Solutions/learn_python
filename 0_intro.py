@@ -4,7 +4,7 @@
 # import print_cat_facts as pcf
 # import traceback2 as traceback
 # import pandas as pd
-# import datetime as dt
+from datetime import datetime as dt
 # ======== PYTHON 101 ==========
 # %% #_ region[grey]
 # ==== Comments ====
@@ -80,18 +80,41 @@ a_list = [1, 2.4, '5.7', True, None, ['a', 'b', 'c'], {"key": 'vlue'}]
 print(a_list)
 
 # %% #* lists can contain other lists
-print(a_list[-1:])
+print(a_list[-3:])
 print(a_list[:3])
 len(a_list)  # len is another helpful function that shows us how many objects are in a list
 
 # %%
 len('abcd')  # also works on strings, fyi
 
+# %%#==== dictionaries ====
+
+person = {"FirstName": "Preston",
+          "LastName": "Pope",
+          "Location": "Texas",
+          "Age": 29,
+          "Hobbies": ["Soccer", "Coding", "Outdoors"]
+          }
+
+person['FullName'] = person['FirstName'] + " " + person['LastName']
+
+# %% #* iterate over each item in a dictionary
+for k, v in person.items():
+    print(v)
+
+# %% #* get all the keys from a dictionary
+for k in person.keys():
+    print(k)
+
+# %% #* get all the keys from a dictionary
+person_values = person.values()
+person_values = list(person_values)
+
 # %%#= dates
 # * here we gave the datetime module a nickname 'dt' so we dont have to type it everytime we use it
 # generally you import at the top of the file.. but oh well
 
-day = dt.datetime.now()  # * now this is called a dot function.
+day = dt.now()  # * now this is called a dot function.
 # previously we use a function like 'len()' by placing a the objects or paramters into the ().
 # with a dot fucntion, we place just put the function after the object, seperated by a '.'
 # like this. Here we have a datetime object called 'day' and use a dot function called 'weekday' on it
@@ -131,13 +154,10 @@ type(its_monday)
 #         print('no day found)
 
 # %%#* truthy and falsey
-if its_tuesday:
-    print('sweet, its taco tuesday')
+if 0:
+    print('lets go get pizza')
 else:
-    if 0:
-        print('lets go get pizza')
-    else:
-        print('yuck just a salad...')
+    print('yuck just a salad...')
 # %% #= booleans
 print(1 == 1)  # the double equal sign is essentially asking "is this equal to this?"
 print(True == (1 == 3))
@@ -151,11 +171,12 @@ else:
     print('wait why did it print this?')
 
 # %%
-a_list = [0, 1, -1, None, False, True, "random", [1, 2], {'test': 'value'}]
-for item in a_list:
-    print(item)
+a_list = [0, 1, -1, None, False, True, "random",
+          "", [1, 2], [], {'test': 'value'}, {}]
+for i in a_list:
+    print(i)
     # chekc if item is truthy or falsey
-    if item:
+    if i:
         print('this is truthy')
     else:
         # google python "falsish and trueish values"
