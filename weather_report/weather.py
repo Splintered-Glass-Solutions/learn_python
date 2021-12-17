@@ -1,4 +1,4 @@
-#%% find free weather api and sign up for it
+#%% find free weather api and sign up for it  https://openweathermap.org/
 
 #%% make a call to get the forecast for you area
 
