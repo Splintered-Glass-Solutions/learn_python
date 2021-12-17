@@ -1,6 +1,7 @@
 
 #%% == Imports ==
 import pandas as pd
+import matplotlib.pyplot as plt
 
 # %% #==== Basic Data Operations (pandas)====
 # %% #_ region[green]
@@ -40,7 +41,7 @@ data[100:103]
 cleaned_df.set_index('ID', inplace=True)
 cleaned_df.loc[93091]  # lookup by the index
 cleaned_df.iloc[150]  # lookup by the row number
-cleaned_df[cleaned_df['Medal']=='Gold'] # by values
+norus_f_gold_df = cleaned_df[(cleaned_df['Medal']=='Gold') & (cleaned_df['Sex']=='F') & (cleaned_df['NOC']!='RUS')] # by values
 
 # %% #* easy plotting wiht pandas
 ax1 = cleaned_df.plot.scatter(x='Height',
@@ -51,25 +52,63 @@ ax1 = cleaned_df.plot.scatter(x='Height',
 ax1 = cleaned_df.plot.scatter(x='Height',
                               y='Weight',
                               c='Age',
-                              alpha=0.25,
+                              alpha=0.05,
                               colormap='viridis')
 
 # %% #== Time to try it yourself!
 
 #%% #* add x tick labels
 # dont peak https://stackoverflow.com/questions/43578976/pandas-missing-x-tick-labels
-
+fig, ax = plt.subplots()
+cleaned_df.plot(kind='scatter', 
+                x='Height', 
+                y='Weight', 
+                s=10,
+                c='Age', 
+                cmap='viridis',
+                alpha=0.1,
+                ax=ax)
 #%% #* make a plot that only shows males
-
-#%% #* make a plot that only shows males
-
+males_df = cleaned_df[cleaned_df['Sex']=='F']
+fig1, ax = plt.subplots()
+males_df.plot(kind='scatter', 
+                x='Height', 
+                y='Weight', 
+                s=10,
+                c='Age', 
+                cmap='viridis',
+                alpha=0.1,
+                ax=ax)
+#%% #* make a plot that only shows males from USA
+males_df = cleaned_df[(cleaned_df['Sex']=='F') & (cleaned_df['NOC']=='USA')]
+fig1, ax = plt.subplots()
+males_df.plot(kind='scatter', 
+                x='Height', 
+                y='Weight', 
+                s=10,
+                c='Age', 
+                cmap='viridis',
+                alpha=0.1,
+                ax=ax)
 #%% #* color the plot by medal instead of age
+colors = {'Gold':'gold', 'Silver':'silver', 'Bronze':'sienna'}
+
+fig1, ax = plt.subplots()
+males_df.plot(kind='scatter', 
+                x='Height', 
+                y='Weight', 
+                s=30,
+                c=males_df['Medal'].map(colors), 
+                alpha=0.25,
+                ax=ax)
 
 #%% #* get a count of the gold medals by country in a table
+gold_df = cleaned_df[cleaned_df['Medal']=='Gold']
+team_golds = gold_df['Team'].value_counts()
 
 #%% #* make a bar chart out of it ^
-
+team_golds.iloc[:10].plot.bar(x='Team', y='Value')
 #%% #* save this table to 
-
+team_golds.to_csv("gold.csv")
 # %%
 # _ endregion
